@@ -6,6 +6,14 @@ import common._
  * 2. Purely Functional Sets.
  */
 object FunSets {
+
+  def main(args: Array[String]) {
+    print(contains(singletonSet(1),1))
+    print(contains(singletonSet(1),1))
+    val union1: Set = union(singletonSet(1),singletonSet(2))
+    val intersect1: Set = intersect(singletonSet(1),singletonSet(2))
+    val diff: Set = intersect(union1,singletonSet(2))
+  }
   /**
    * We represent a set by its characteristic function, i.e.
    * its `contains` predicate.
