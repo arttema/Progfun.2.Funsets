@@ -30,24 +30,13 @@ object FunSets {
    * Returns the union of the two given sets,
    * the sets of all elements that are in either `s` or `t`.
    */
-  def union(s: Set, t: Set): Set = {
-    def union(elem: Int): Boolean = {
-       s(elem) || t(elem)
-    }
-    union
-  }
-
+  def union(s: Set, t: Set): Set  = (elem: Int) => s(elem) || t(elem)
 
   /**
    * Returns the intersection of the two given sets,
    * the set of all elements that are both in `s` and `t`.
    */
-  def intersect(s: Set, t: Set): Set = {
-    def intersect(elem: Int): Boolean = {
-      s(elem) && t(elem)
-    }
-    intersect
-  }
+  def intersect(s: Set, t: Set): Set = (elem: Int) => s(elem) && t(elem)
 
   def sum(f: Int => Int, a: Int, b: Int): Int =
    if (a>b)0
@@ -57,22 +46,12 @@ object FunSets {
    * Returns the difference of the two given sets,
    * the set of all elements of `s` that are not in `t`.
    */
-  def diff(s: Set, t: Set): Set = {
-    def diff(elem: Int): Boolean = {
-      s(elem) && !t(elem)
-    }
-    diff
-  }
+  def diff(s: Set, t: Set): Set  = (elem: Int) =>  s(elem) && !t(elem)
 
   /**
    * Returns the subset of `s` for which `p` holds.
    */
-  def filter(s: Set, p: Int => Boolean): Set = {
-    def filter(elem: Int): Boolean ={
-      s(elem) && p(elem)
-    }
-    filter
-  }
+  def filter(s: Set, p: Int => Boolean): Set = (elem: Int) => s(elem) && p(elem)
 
   /**
    * The bounds for `forall` and `exists` are +/- 1000.
