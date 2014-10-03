@@ -7,12 +7,8 @@ import common._
  */
 object FunSets {
 
-  def main(args: Array[String]) {
-    print(contains(singletonSet(1),1))
-    print(contains(singletonSet(1),1))
-    val union1: Set = union(singletonSet(1),singletonSet(2))
-    val intersect1: Set = intersect(singletonSet(1),singletonSet(2))
-    val diff: Set = intersect(union1,singletonSet(2))
+  def main(args: Array[String]): Unit = {
+
   }
   /**
    * We represent a set by its characteristic function, i.e.
@@ -78,12 +74,26 @@ object FunSets {
    * Returns whether there exists a bounded integer within `s`
    * that satisfies `p`.
    */
-  def exists(s: Set, p: Int => Boolean): Boolean = forall(p,s)
+  def exists(s: Set, p: Int => Boolean): Boolean = forall(intersect(s, p), p)
 
   /**
    * Returns a set transformed by applying `f` to each element of `s`.
    */
-  def map(s: Set, f: Int => Int): Set = ???
+  def map(s: Set, f: Int => Int): Set = {
+    var set = intersect(singletonSet(-1), singletonSet(1))
+    var firstIter = true
+
+    for (i <- -bound to bound if contains(s, i)) {
+      val transI = f(i)
+      if (firstIter) {
+        set = union(singletonSet(transI), singletonSet(transI))
+      } else {
+        set = union(singletonSet(transI), set)
+      }
+      firstIter = false
+    }
+    set
+  }
 
   /**
    * Displays the contents of a set
