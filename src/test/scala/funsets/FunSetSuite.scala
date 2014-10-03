@@ -151,4 +151,15 @@ class FunSetSuite extends FunSuite {
       assert(exists(s123, s1), "exists {1 2 3} 1 ?")
     }
   }
+
+  test("maps") {
+    new TestSets {
+      val s012mapped = map(s123, (x: Int) => x - 1)
+      val s123mapped = map(s246, (x: Int) => x / 2)
+      assert(contains(s012mapped, 1), "123 -> 012 contains 1")
+      assert(contains(s012mapped, 2), "123 -> 012 contains 2")
+      assert(contains(s012mapped, 0), "123 -> 012 contains 0")
+      assert(forall(s123, s123mapped), "{1 2 3} equals {2 4 6} -> {1 2 3}")
+    }
+  }
 }
